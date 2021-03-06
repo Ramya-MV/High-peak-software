@@ -1,0 +1,94 @@
+Name   :    M V Ramya
+Branch :    Electronics and communication
+College:    Alvas Institute of Engineering and Technology
+
+Problem Statement:
+
+Let's say the HR team of a company has goodies set of size N each with a different price tag for each goodie. Now the HR team has to distribute the goodies among the M employees in the company such that one employee receives one goodie. Find out the goodies the HR team can distribute so that the difference between the low price goodie and the high price goodie selected is minimum.
+
+
+Code in Python3:
+
+import re
+b=[]
+a=[]
+f1=open("sample_input.txt","r")                                                              #Opening sample_input file in read mode
+for l in f1:                                                                                 #Itirating through line line
+    temp1=l.split()                                                                          #Spliting each line into words 
+    a.append(int(temp1[-1]))                                                                 #Storing only integer values
+    b.append(" ".join(temp1[:-1]))
+for i in range(1,len(a)):
+  for j in range(i+1,len(a)):
+    if(a[i]>a[j]):
+      t1=a[i]
+      a[i]=a[j]
+      a[j]=t1
+      t2 = b[i]
+      b[i] = b[j]
+      b[j] = t2
+print(a)
+print(b)
+min=999999
+for i in range(1,len(a)-a[0]-1):
+  if(a[i+a[0]-1]-a[i]<min):
+      min=a[i+a[0]-1]-a[i]
+      c=i
+
+D=[]
+for x in range (c, c+a[0]):
+    str1=b[x]+str(a[x])+"\n"
+    D.append(str1)
+    str1=""
+print(D)
+f2=open("sample_output.txt","w")                      # Opening sample_output file in write mode
+f2.write("Here the goodies that are selected for distribution are:\n")
+for y in D:
+  f2.write(y)
+str2="And the differene between the chosen with highest pay godie. and lower price is "+str(min)
+f2.write(str2)
+
+Input:
+
+Fitbit Plus: 7980
+IPods: 22349
+MI Band: 999
+Cult Pass: 2799
+Macbook Pro: 229900
+Digital Camera: 11101
+Alexa: 9999
+Sandwich Toaster: 2195
+Microwave Oven: 9800
+Scale: 4999
+
+Output:
+
+Number of employees: 4
+
+Here the goodies that are selected for distribution are:
+Fitbit Plus:7980
+Microwave Oven:9800
+Alexa:9999
+Digital Camera:11101
+And the differene between the chosen with highest pay godie. and lower price is 3121
+
+Output:
+
+Number of employees: 6
+
+Here the goodies that are selected for distribution are:
+Sandwich Toaster:2195
+Cult Pass:2799
+Scale:4999
+Fitbit Plus:7980
+Microwave Oven:9800
+Alexa:9999
+And the differene between the chosen with highest pay godie. and lower price is 7804
+
+Output:
+
+Number of employees: 2
+
+Here the goodies that are selected for distribution are:
+Microwave Oven:9800
+Alexa:9999
+And the differene between the chosen with highest pay godie. and lower price is 199
